@@ -26,7 +26,7 @@ object ServerRunner extends App  {
   val bindingFuture = Http().bindAndHandle(Item.route, config.getString("http.interface"), config.getInt("http.port"))
 
   val scheduleActor = system.actorOf(ScheduledItemFetchActor.props, "scheduleActor")
-  system.scheduler.schedule(0 seconds, config.getInt("interval") seconds, scheduleActor, FetchItems)
+  system.scheduler.schedule(0 second, config.getInt("interval") seconds, scheduleActor, FetchItems)
 
 
 }
