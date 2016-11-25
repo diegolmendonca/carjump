@@ -26,7 +26,7 @@ We basicaly have two functionalities:
 
   ** Example : http://localhost:9000/item/10  -> Will retrieve item which is stored at position number 10 in our internal cache.
 
-  ** <index> is a valid positive integer
+  ** index is a valid positive integer
 
  **  Expected result :
  **  - In case we find an item, the item itself is returned, status code 200
