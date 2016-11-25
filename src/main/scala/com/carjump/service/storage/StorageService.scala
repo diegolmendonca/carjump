@@ -1,7 +1,5 @@
 package com.carjump.service.storage
 
-import scala.concurrent.Future
-
 /**
   * Created by dm on 23.11.16.
   */
@@ -20,7 +18,7 @@ trait StorageService {
     * @param index the position to be queried for
     * @return the char at index position, if it exists
     */
-  def get(index: Int): Future[Option[Char]]
+  def get(index: Int): Option[Char]
 
 
 }

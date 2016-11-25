@@ -16,7 +16,7 @@ import scala.concurrent.Future
 trait FetchService {
   def persistItems: Unit
 
-  def getItem(index: Int): Future[Option[Char]]
+  def getItem(index: Int): Option[Char]
 }
 
 
@@ -40,7 +40,7 @@ object FetchServiceImpl extends FetchService {
       response => {
         Unmarshal(response).to[Array[Char]] map {
           array => {
-            storage.persist(array.filterNot(x => x.equals('\n')))    // removing all line breaks from response
+            storage.persist(array.filterNot(x => x.equals('\n'))) // removing all line breaks from response
           }
         }
       }
@@ -49,8 +49,10 @@ object FetchServiceImpl extends FetchService {
 
   /**
     * Service responsible for retrieving from our cache the item stored at a certain index
+    *
     * @param index The index to be queried for
     * @return the item at the given index
     */
-  override def getItem(index: Int): Future[Option[Char]] = storage.get(index)
+  override def getItem(index: Int): Option[Char] = storage.get(index)
+
 }

@@ -15,9 +15,9 @@ class InMemoryStorageServiceSpec(implicit ee: ExecutionEnv) extends Specificatio
       compressionStorageService.persist(Seq('c', 'c', 'c', 'c', 'd', 'c', 'c'))
 
       compressionStorageService.cache.size should be equalTo (7)
-      compressionStorageService.get(0) should beSome('c').await
-      compressionStorageService.get(4) must beSome('d').await
-      compressionStorageService.get(10) must beNone.await
+      compressionStorageService.get(0) should beSome('c')
+      compressionStorageService.get(4) must beSome('d')
+      compressionStorageService.get(10) must beNone
     }
 
 

@@ -18,9 +18,9 @@ class CompressionStorageServiceSpec(implicit ee: ExecutionEnv) extends Specifica
       compressionStorageService.persist(Seq('c', 'c', 'c', 'c', 'd', 'c', 'c'))
 
       compressionStorageService.cache.size should be equalTo (3)
-      compressionStorageService.get(0) should beSome('c').await
-      compressionStorageService.get(4) must beSome('d').await
-      compressionStorageService.get(10) must beNone.await
+      compressionStorageService.get(0) should beSome('c')
+      compressionStorageService.get(4) must beSome('d')
+      compressionStorageService.get(10) must beNone
     }
 
 

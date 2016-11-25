@@ -1,9 +1,6 @@
 package com.carjump.service.storage
 
 import com.carjump.service.compression.{Compressed, CompressionService}
-import scala.concurrent.ExecutionContext.Implicits.global
-
-import scala.concurrent.Future
 
 /**
   * Simple in memory cache implementation with compression applied
@@ -33,16 +30,13 @@ class CompressionStorageService extends StorageService {
     * @param index the position to be queried for
     * @return the char at index position, if it exists
     */
-  override def get(index: Int): Future[Option[Char]] = {
+  override def get(index: Int): Option[Char] = {
     val decompressed = compressionService.decompress(cache)
 
     val result = index match {
       case x: Int if (x > decompressed.size) => None
       case _ => Some(decompressed(index))
     }
-
-    Future {
-      result
-    }
+    result
   }
 }
